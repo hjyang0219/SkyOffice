@@ -27,39 +27,51 @@ export default class Bootstrap extends Phaser.Scene {
     this.load.image('backdrop_night', 'assets/background/backdrop_night.png')
     this.load.image('sun_moon', 'assets/background/sun_moon.png')
 
-    this.load.tilemapTiledJSON('tilemap', 'assets/map/map.json')
-    this.load.spritesheet('tiles_wall', 'assets/map/FloorAndGround.png', {
+    this.load.tilemapTiledJSON('tilemap', 'assets2/library.json')
+    this.load.spritesheet('tiles_wall', 'assets2/FloorAndGround.png', {
       frameWidth: 32,
       frameHeight: 32,
     })
-    this.load.spritesheet('chairs', 'assets/items/chair.png', {
-      frameWidth: 32,
-      frameHeight: 64,
-    })
-    this.load.spritesheet('computers', 'assets/items/computer.png', {
-      frameWidth: 96,
-      frameHeight: 64,
-    })
-    this.load.spritesheet('whiteboards', 'assets/items/whiteboard.png', {
+    this.load.spritesheet('library_item', 'assets2/library_item.png', {
       frameWidth: 64,
-      frameHeight: 64,
+      frameHeight: 96,
     })
-    this.load.spritesheet('vendingmachines', 'assets/items/vendingmachine.png', {
-      frameWidth: 48,
-      frameHeight: 72,
+    this.load.spritesheet('random_item', 'assets2/random_item.png', {
+      frameWidth: 320,
+      frameHeight: 96,
     })
-    this.load.spritesheet('office', 'assets/tileset/Modern_Office_Black_Shadow.png', {
-      frameWidth: 32,
-      frameHeight: 32,
+    this.load.spritesheet('office', 'assets2/office.png', {
+      frameWidth: 320,
+      frameHeight: 160,
     })
-    this.load.spritesheet('basement', 'assets/tileset/Basement.png', {
-      frameWidth: 32,
-      frameHeight: 32,
-    })
-    this.load.spritesheet('generic', 'assets/tileset/Generic.png', {
-      frameWidth: 32,
-      frameHeight: 32,
-    })
+    // this.load.spritesheet('chairs', 'assets/items/chair.png', {
+    //   frameWidth: 32,
+    //   frameHeight: 64,
+    // })
+    // this.load.spritesheet('computers', 'assets/items/computer.png', {
+    //   frameWidth: 96,
+    //   frameHeight: 64,
+    // })
+    // this.load.spritesheet('whiteboards', 'assets/items/whiteboard.png', {
+    //   frameWidth: 64,
+    //   frameHeight: 64,
+    // })
+    // this.load.spritesheet('vendingmachines', 'assets/items/vendingmachine.png', {
+    //   frameWidth: 48,
+    //   frameHeight: 72,
+    // })
+    // this.load.spritesheet('office', 'assets/tileset/Modern_Office_Black_Shadow.png', {
+    //   frameWidth: 32,
+    //   frameHeight: 32,
+    // })
+    // this.load.spritesheet('basement', 'assets/tileset/Basement.png', {
+    //   frameWidth: 32,
+    //   frameHeight: 32,
+    // })
+    // this.load.spritesheet('generic', 'assets/tileset/Generic.png', {
+    //   frameWidth: 32,
+    //   frameHeight: 32,
+    // })
     this.load.spritesheet('adam', 'assets/character/adam.png', {
       frameWidth: 32,
       frameHeight: 48,
@@ -76,6 +88,7 @@ export default class Bootstrap extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48,
     })
+    
 
     this.load.on('complete', () => {
       this.preloadComplete = true

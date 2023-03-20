@@ -7,6 +7,8 @@ import RoomSelectionDialog from './components/RoomSelectionDialog'
 import LoginDialog from './components/LoginDialog'
 import ComputerDialog from './components/ComputerDialog'
 import WhiteboardDialog from './components/WhiteboardDialog'
+import BookshelfDialog from './components/BookshelfDialog'
+import BooklocationDialog from './components/BooklocationDialog'
 import VideoConnectionDialog from './components/VideoConnectionDialog'
 import Chat from './components/Chat'
 import HelperButtonGroup from './components/HelperButtonGroup'
@@ -22,6 +24,8 @@ function App() {
   const loggedIn = useAppSelector((state) => state.user.loggedIn)
   const computerDialogOpen = useAppSelector((state) => state.computer.computerDialogOpen)
   const whiteboardDialogOpen = useAppSelector((state) => state.whiteboard.whiteboardDialogOpen)
+  const bookshelfDialogOpen = useAppSelector((state) => state.bookshelf.bookshelfDialogOpen)
+  const booklocationDialogOpen = useAppSelector((state) => state.booklocation.booklocationDialogOpen)
   const videoConnected = useAppSelector((state) => state.user.videoConnected)
   const roomJoined = useAppSelector((state) => state.room.roomJoined)
 
@@ -33,6 +37,12 @@ function App() {
     } else if (whiteboardDialogOpen) {
       /* Render WhiteboardDialog if user is using a whiteboard. */
       ui = <WhiteboardDialog />
+    } else if (bookshelfDialogOpen) {
+      /* Render WhiteboardDialog if user is using a whiteboard. */
+      ui = <BookshelfDialog />
+    } else if (booklocationDialogOpen) {
+      /* Render WhiteboardDialog if user is using a whiteboard. */
+      ui = <BooklocationDialog />
     } else {
       ui = (
         /* Render Chat or VideoConnectionDialog if no dialogs are opened. */

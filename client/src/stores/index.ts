@@ -3,6 +3,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './UserStore'
 import computerReducer from './ComputerStore'
 import whiteboardReducer from './WhiteboardStore'
+import bookshelfReducer from './BookshelfStore'
+import booklocationReducer from './BooklocationStore'
 import chatReducer from './ChatStore'
 import roomReducer from './RoomStore'
 
@@ -13,6 +15,8 @@ const store = configureStore({
     user: userReducer,
     computer: computerReducer,
     whiteboard: whiteboardReducer,
+    bookshelf: bookshelfReducer,
+    booklocation: booklocationReducer,
     chat: chatReducer,
     room: roomReducer,
   },

@@ -15,6 +15,9 @@ import { ItemType } from '../../../types/Items'
 import { NavKeys } from '../../../types/KeyboardState'
 import { JoystickMovement } from '../components/Joystick'
 import { openURL } from '../utils/helpers'
+import BookshelfArt from '../items/BookshelfArt'
+import BookshelfFashion from '../items/BookshelfFashion'
+import BookLocation from '../items/BookLocation'
 
 export default class MyPlayer extends Player {
   private playContainerBody: Phaser.Physics.Arcade.Body
@@ -73,6 +76,14 @@ export default class MyPlayer extends Player {
           // hacky and hard-coded, but leaving it as is for now
           const url = 'https://www.buymeacoffee.com/skyoffice'
           openURL(url)
+          break
+        case ItemType.BOOKSHELF_FASHION:
+          const bookshelf = item as BookshelfFashion
+          bookshelf.openDialog(network)
+          break
+        case ItemType.BOOKLOCATION:
+          const booklocation = item as BookLocation
+          booklocation.openDialog()
           break
       }
     }

@@ -158,6 +158,8 @@ export default function LoginDialog() {
     } else if (roomJoined) {
       console.log('Join! Name:', name, 'Avatar:', avatars[avatarIndex].name)
       game.registerKeys()
+      console.log(game)
+      console.log(game.myPlayer)
       game.myPlayer.setPlayerName(name)
       game.myPlayer.setPlayerTexture(avatars[avatarIndex].name)
       game.network.readyToConnect()
