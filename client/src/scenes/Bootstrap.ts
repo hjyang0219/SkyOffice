@@ -44,6 +44,10 @@ export default class Bootstrap extends Phaser.Scene {
       frameWidth: 320,
       frameHeight: 160,
     })
+    this.load.spritesheet('npc', 'assets2/npc.png', {
+      frameWidth: 160,
+      frameHeight: 96,
+    })
     // this.load.spritesheet('chairs', 'assets/items/chair.png', {
     //   frameWidth: 32,
     //   frameHeight: 64,
@@ -88,7 +92,6 @@ export default class Bootstrap extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48,
     })
-    
 
     this.load.on('complete', () => {
       this.preloadComplete = true

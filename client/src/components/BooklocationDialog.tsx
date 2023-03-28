@@ -14,8 +14,8 @@ const Backdrop = styled.div`
   height: 100vh;
   overflow: hidden;
   padding: 16px 180px 16px 16px;
-  width: 50%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
 `
 const Wrapper = styled.div`
   width: 100%;
@@ -41,7 +41,6 @@ const WhiteboardWrapper = styled.div`
   border-radius: 25px;
   overflow: hidden;
   margin-right: 25px;
-
 `
 
 export default function BooklocationDialog() {
@@ -58,9 +57,9 @@ export default function BooklocationDialog() {
         >
           <CloseIcon />
         </IconButton>
-          <WhiteboardWrapper>
-            <img title="booklocation" src={"/assets2/library.png"} />
-          </WhiteboardWrapper>
+        <WhiteboardWrapper>
+          <img title="booklocation" src={'/assets2/library.png'} />
+        </WhiteboardWrapper>
       </Wrapper>
     </Backdrop>
   )

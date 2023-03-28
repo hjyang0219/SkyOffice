@@ -14,7 +14,7 @@ import BookshelfSports from '../items/BookshelfSports'
 import BookshelfShelter from '../items/BookshelfShelter'
 import BookshelfGourmet from '../items/BookshelfGourmet'
 import BookshelfMobility from '../items/BookshelfMobility'
-import BookLocation from "../items/BookLocation"
+import BookLocation from '../items/BookLocation'
 import '../characters/MyPlayer'
 import '../characters/OtherPlayer'
 import MyPlayer from '../characters/MyPlayer'
@@ -140,7 +140,12 @@ export default class Game extends Phaser.Scene {
     const fashionBookshelves = this.physics.add.staticGroup({ classType: BookshelfFashion })
     const FashionLayer = this.map.getObjectLayer('fashion')
     FashionLayer.objects.forEach((obj, i) => {
-      const item = this.addObjectFromTiled(fashionBookshelves, obj, 'fashionBookshelves', 'library_item')
+      const item = this.addObjectFromTiled(
+        fashionBookshelves,
+        obj,
+        'fashionBookshelves',
+        'library_item'
+      )
       const id = `${i}`
       item.id = id
       this.bookshelfMap.set(id, item)
@@ -188,7 +193,6 @@ export default class Game extends Phaser.Scene {
       this.addObjectFromTiled(booklocation, obj, 'booklocation', 'library_item')
     })
 
-
     // import other objects from Tiled map to Phaser
     // this.addGroupFromTiled('Wall', 'tiles_wall', 'library_item', false)
     // this.addGroupFromTiled('Objects', 'office', 'Modern_Office_Black_Shadow', false)
@@ -196,7 +200,6 @@ export default class Game extends Phaser.Scene {
     // this.addGroupFromTiled('GenericObjects', 'generic', 'Generic', false)
     // this.addGroupFromTiled('GenericObjectsOnCollide', 'generic', 'Generic', true)
     // this.addGroupFromTiled('Basement', 'basement', 'Basement', true)
-
 
     this.addGroupFromTiled('sports', 'library_item', 'library_item', true)
     this.addGroupFromTiled('art', 'library_item', 'library_item', true)
@@ -207,8 +210,8 @@ export default class Game extends Phaser.Scene {
     this.addGroupFromTiled('random', 'random_item', 'random_item', true)
     this.addGroupFromTiled('computer', 'library_item', 'library_item', true)
     this.addGroupFromTiled('office', 'office', 'office', true)
+    this.addGroupFromTiled('npc', 'npc', 'npc', true)
     // this.addGroupFromTiled('text', 'text', 'text', false)
-
 
     this.otherPlayers = this.physics.add.group({ classType: OtherPlayer })
 
@@ -221,7 +224,15 @@ export default class Game extends Phaser.Scene {
     this.physics.add.overlap(
       this.playerSelector,
       // [chairs, computers, whiteboards, vendingMachines],
-      [fashionBookshelves, artBookshelves, sportsBookshelves, mobilityBookshelves, shelterBookshelves, gourmetBookshelves,booklocation],
+      [
+        fashionBookshelves,
+        artBookshelves,
+        sportsBookshelves,
+        mobilityBookshelves,
+        shelterBookshelves,
+        gourmetBookshelves,
+        booklocation,
+      ],
       this.handleItemSelectorOverlap,
       undefined,
       this

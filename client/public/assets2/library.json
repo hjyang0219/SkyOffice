@@ -479,7 +479,30 @@
                  "visible":true,
                  "width":320,
                  "x":608,
-                 "y":256
+                 "y":352
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":13,
+         "name":"npc",
+         "objects":[
+                {
+                 "gid":3423,
+                 "height":96,
+                 "id":52,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":160,
+                 "x":672,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -558,8 +581,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":13,
- "nextobjectid":52,
+ "nextlayerid":14,
+ "nextobjectid":53,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.0",
@@ -568,7 +591,7 @@
         {
          "columns":1,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/\uc544\uce74\uc774\ube0c\/library_item.png",
+         "image":"library_item.png",
          "imageheight":960,
          "imagewidth":64,
          "margin":0,
@@ -581,7 +604,7 @@
         {
          "columns":1,
          "firstgid":11,
-         "image":"..\/..\/..\/..\/\uc544\uce74\uc774\ube0c\/random_item.png",
+         "image":"random_item.png",
          "imageheight":288,
          "imagewidth":320,
          "margin":0,
@@ -594,7 +617,7 @@
         {
          "columns":16,
          "firstgid":14,
-         "image":"..\/..\/..\/..\/\uc544\uce74\uc774\ube0c\/Modern_Office_Black_Shadow.png",
+         "image":"Modern_Office_Black_Shadow.png",
          "imageheight":1696,
          "imagewidth":512,
          "margin":0,
@@ -607,7 +630,7 @@
         {
          "columns":1,
          "firstgid":862,
-         "image":"..\/..\/..\/..\/\uc544\uce74\uc774\ube0c\/office.png",
+         "image":"office.png",
          "imageheight":160,
          "imagewidth":320,
          "margin":0,
@@ -620,7 +643,7 @@
         {
          "columns":64,
          "firstgid":863,
-         "image":"..\/..\/..\/..\/\uc544\uce74\uc774\ube0c\/FloorAndGround.png",
+         "image":"FloorAndGround.png",
          "imageheight":1280,
          "imagewidth":2048,
          "margin":0,
@@ -12048,6 +12071,19 @@
                         }]
                 }],
          "tilewidth":32
+        }, 
+        {
+         "columns":1,
+         "firstgid":3423,
+         "image":"npc.png",
+         "imageheight":96,
+         "imagewidth":160,
+         "margin":0,
+         "name":"npc",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":96,
+         "tilewidth":160
         }],
  "tilewidth":32,
  "type":"map",
