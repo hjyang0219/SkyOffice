@@ -10,6 +10,7 @@ import WhiteboardDialog from './components/WhiteboardDialog'
 import BookshelfDialog from './components/BookshelfDialog'
 import BooklocationDialog from './components/BooklocationDialog'
 import VideoConnectionDialog from './components/VideoConnectionDialog'
+import NPCDialog from './components/NPCDialog'
 import Chat from './components/Chat'
 import HelperButtonGroup from './components/HelperButtonGroup'
 import MobileVirtualJoystick from './components/MobileVirtualJoystick'
@@ -26,6 +27,7 @@ function App() {
   const whiteboardDialogOpen = useAppSelector((state) => state.whiteboard.whiteboardDialogOpen)
   const bookshelfDialogOpen = useAppSelector((state) => state.bookshelf.bookshelfDialogOpen)
   const booklocationDialogOpen = useAppSelector((state) => state.booklocation.booklocationDialogOpen)
+  const npcDialogOpen = useAppSelector((state) => state.npc.npcDialogOpen)
   const videoConnected = useAppSelector((state) => state.user.videoConnected)
   const roomJoined = useAppSelector((state) => state.room.roomJoined)
 
@@ -43,6 +45,9 @@ function App() {
     } else if (booklocationDialogOpen) {
       /* Render WhiteboardDialog if user is using a whiteboard. */
       ui = <BooklocationDialog />
+    } else if (npcDialogOpen) {
+      /* Render WhiteboardDialog if user is using a whiteboard. */
+      ui = <NPCDialog />
     } else {
       ui = (
         /* Render Chat or VideoConnectionDialog if no dialogs are opened. */

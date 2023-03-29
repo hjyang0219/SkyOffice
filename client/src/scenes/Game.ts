@@ -15,6 +15,7 @@ import BookshelfShelter from '../items/BookshelfShelter'
 import BookshelfGourmet from '../items/BookshelfGourmet'
 import BookshelfMobility from '../items/BookshelfMobility'
 import BookLocation from '../items/BookLocation'
+import Npc from '../items/Npc'
 import '../characters/MyPlayer'
 import '../characters/OtherPlayer'
 import MyPlayer from '../characters/MyPlayer'
@@ -193,6 +194,13 @@ export default class Game extends Phaser.Scene {
       this.addObjectFromTiled(booklocation, obj, 'booklocation', 'library_item')
     })
 
+    // import bookshelf objects from Tiled map to Phaser
+    const npc = this.physics.add.staticGroup({ classType: Npc })
+    const NpcLayer = this.map.getObjectLayer('npc')
+    NpcLayer.objects.forEach((obj, i) => {
+      this.addObjectFromTiled(npc, obj, 'npc', 'npc')
+    })
+
     // import other objects from Tiled map to Phaser
     // this.addGroupFromTiled('Wall', 'tiles_wall', 'library_item', false)
     // this.addGroupFromTiled('Objects', 'office', 'Modern_Office_Black_Shadow', false)
@@ -232,6 +240,7 @@ export default class Game extends Phaser.Scene {
         shelterBookshelves,
         gourmetBookshelves,
         booklocation,
+        npc
       ],
       this.handleItemSelectorOverlap,
       undefined,

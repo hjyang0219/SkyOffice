@@ -19,6 +19,9 @@ import {
   pushPlayerJoinedMessage,
   pushPlayerLeftMessage,
 } from '../stores/ChatStore'
+import{
+  pushGPTChatMessage
+} from "../stores/NPCStore"
 import { setWhiteboardUrls } from '../stores/WhiteboardStore'
 
 export default class Network {
@@ -170,6 +173,16 @@ export default class Network {
       phaserEvents.emit(Event.UPDATE_DIALOG_BUBBLE, clientId, content)
     })
 
+    // when a user sends a message
+    this.room.onMessage(Message.ADD_GPTCHAT_MESSAGE, ({ clientId, content }) => {
+      const message = {
+        author:clientId,
+        content:content,
+        createdAt:Date.now()
+      }
+      store.dispatch(pushGPTChatMessage(message))
+    })
+
     // when a peer disconnects with myPeer
     this.room.onMessage(Message.DISCONNECT_STREAM, (clientId: string) => {
       this.webRTC?.deleteOnCalledVideoStream(clientId)
@@ -281,5 +294,9 @@ export default class Network {
 
   addChatMessage(content: string) {
     this.room?.send(Message.ADD_CHAT_MESSAGE, { content: content })
+  }
+
+  addGPTChatMessage(chatMessages: string, content: string) {
+    this.room?.send(Message.ADD_GPTCHAT_MESSAGE, {chatMessages, content: content })
   }
 }

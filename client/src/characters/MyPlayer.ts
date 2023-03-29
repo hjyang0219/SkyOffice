@@ -18,6 +18,7 @@ import { openURL } from '../utils/helpers'
 import BookshelfArt from '../items/BookshelfArt'
 import BookshelfFashion from '../items/BookshelfFashion'
 import BookLocation from '../items/BookLocation'
+import Npc from "../items/Npc"
 
 export default class MyPlayer extends Player {
   private playContainerBody: Phaser.Physics.Arcade.Body
@@ -61,7 +62,6 @@ export default class MyPlayer extends Player {
     if (!cursors) return
 
     const item = playerSelector.selectedItem
-
     if (Phaser.Input.Keyboard.JustDown(keyR)) {
       switch (item?.itemType) {
         case ItemType.COMPUTER:
@@ -84,6 +84,10 @@ export default class MyPlayer extends Player {
         case ItemType.BOOKLOCATION:
           const booklocation = item as BookLocation
           booklocation.openDialog()
+          break
+        case ItemType.NPC:
+          const npc = item as Npc
+          npc.openDialog()
           break
       }
     }

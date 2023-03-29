@@ -5,6 +5,7 @@ import computerReducer from './ComputerStore'
 import whiteboardReducer from './WhiteboardStore'
 import bookshelfReducer from './BookshelfStore'
 import booklocationReducer from './BooklocationStore'
+import npcReducer from './NPCStore'
 import chatReducer from './ChatStore'
 import roomReducer from './RoomStore'
 
@@ -17,6 +18,7 @@ const store = configureStore({
     whiteboard: whiteboardReducer,
     bookshelf: bookshelfReducer,
     booklocation: booklocationReducer,
+    npc: npcReducer,
     chat: chatReducer,
     room: roomReducer,
   },

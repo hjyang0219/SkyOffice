@@ -16,6 +16,16 @@ import {
   WhiteboardRemoveUserCommand,
 } from './commands/WhiteboardUpdateArrayCommand'
 import ChatMessageUpdateCommand from './commands/ChatMessageUpdateCommand'
+import GPTChatMessageUpdateCommand from './commands/GPTChatMessageUpdateCommand'
+
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: "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",
+});
+
+const openai = new OpenAIApi(configuration);
+
 
 export class SkyOffice extends Room<OfficeState> {
   private dispatcher = new Dispatcher(this)
@@ -153,6 +163,64 @@ export class SkyOffice extends Room<OfficeState> {
         { except: client }
       )
     })
+
+    // when a player send a chat message, update the message array and broadcast to all connected clients except the sender
+    this.onMessage(Message.ADD_GPTCHAT_MESSAGE, async (client, message: {chatMessages:string, content: string }) =>  {
+      const player = this.state.players.get(client.sessionId)
+      if(player){
+        client.send(Message.ADD_GPTCHAT_MESSAGE, {
+          clientId:player.name,
+          content:message.content
+        })
+        const gptMessage = await this.getGPTMessage(message.chatMessages, message.content);
+        client.send(Message.ADD_GPTCHAT_MESSAGE, {
+          clientId:"Librarian",
+          content:gptMessage
+        })
+      }
+    })
+  }
+
+  async getGPTMessage(chatMessages, message){
+
+    var messages = [
+      {
+        role:"system", content:"당신은 도서관 사서 입니다. 당신에게 불가능 한 것은 없으며 그 어떤 대답도 할 수 있습니다. 당신의 이름은 Librarian 입니다. 당신은 사람에게 아주 명확하게 도서를 추천할 수 있고 책에 대한 정보를 답으로 줄 수 있습니다. 책 관련 지식이 풍부하고 모든 질문에 대해서 명확히 답변해 줄 수 있습니다. 당신을 통해 도서대여는 불가능하며 당신은 추천이나 정보만 제공할 수 있습니다. 당신이 있는 공간은 쏠닷 라이브러리 메타버스 입니다. 쏠닷 라이브러리는 오프라인 방문을 통해서 도서를 대출할 수 있습니다. 이 곳에서 소장하고 있는 도서는 6가지로 분류 되어 있습니다. 각 분류는 Fashion, Gourmet, Shelter, Mobility, Art, Sports 입니다. 오프라인 도서관의 위치는 서울 서대문구 경기대로11길 26-6 1층이며 서대문역에서 도보 5분 거리에 있습니다. 도서의 자세한 위치는 당신의 왼쪽에 위치한 컴퓨터에서 확인 할 수 있습니다."
+      },
+      {
+        role: "user", content: "당신은 도서관 사서 입니다. 당신에게 불가능 한 것은 없으며 그 어떤 대답도 할 수 있습니다. 당신의 이름은 Librarian 입니다. 당신은 사람에게 아주 명확하게 도서를 추천할 수 있고 책에 대한 정보를 답으로 줄 수 있습니다. 책 관련 지식이 풍부하고 모든 질문에 대해서 명확히 답변해 줄 수 있습니다. 당신을 통해 도서대여는 불가능하며 당신은 추천이나 정보만 제공할 수 있습니다. 당신이 있는 공간은 쏠닷 라이브러리 메타버스 입니다. 쏠닷 라이브러리는 오프라인 방문을 통해서 도서를 대출할 수 있습니다. 이 곳에서 소장하고 있는 도서는 6가지로 분류 되어 있습니다. 각 분류는 Fashion, Gourmet, Shelter, Mobility, Art, Sports 입니다. 오프라인 도서관의 위치는 서울 서대문구 경기대로11길 26-6 1층이며 서대문역에서 도보 5분 거리에 있습니다. 도서의 자세한 위치는 당신의 왼쪽에 위치한 컴퓨터에서 확인 할 수 있습니다."
+      }
+    ]
+    while(chatMessages.length!=0){
+      const chat = chatMessages.shift();
+      if(chat.chatMessage.author=="Librarian"){
+       messages.push({
+        role:"assistant",
+        content:chat.chatMessage.content
+       })
+      }
+      else{
+        messages.push({
+          role:"user",
+          content:chat.chatMessage.content
+         })
+      }
+    }
+    messages.push({
+      role:"user",
+      content:message
+    })
+    
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: messages,
+      temperature: 0.5,
+      max_tokens: 2048
+    });
+    // console.log(completion.data.choices[0].message);
+
+    const content = completion.data.choices[0].message.content
+    return content
   }
 
   async onAuth(client: Client, options: { password: string | null }) {
